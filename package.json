@@ -1,0 +1,24 @@
+{
+  "name": "hslayers-project-enabling",
+  "private": false,
+  "version": "0.5.5",
+  "description": "HSLayers-NG Enabling project",
+  "repository": "git+ssh://git@github.com:hslayers/project-enabling.git",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "",
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 8000",
+    "pretest": "npm install",
+    "test": "karma start test/karma.conf.js",
+    "test-single-run": "karma start test/karma.conf.js  --single-run",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor test/protractor-conf.js"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "requirejs": "^2.3.5"
+  }
+}
