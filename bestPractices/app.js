@@ -22,7 +22,8 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
         .config(function($mdThemingProvider) {
             $mdThemingProvider.theme('default')
                 .primaryPalette('brown', {
-                    'default': '700'
+                    'default': '700',
+                    'hue-1': '400'
                 })
         });
 
@@ -63,9 +64,9 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                     style: new ol.style.Style({
                         image: new ol.style.Icon(({
                             crossOrigin: 'anonymous',
-                            src: 'marker.png',
+                            src: 'marker_dk.png',
                             anchor: [0.5, 1],
-                            scale: 0.35,
+                            scale: 0.4,
                         }))
                     }),
                     hsFilters: [
