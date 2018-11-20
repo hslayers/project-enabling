@@ -1,6 +1,6 @@
 'use strict';
 
-define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', 'search', 'print', 'permalink', 'measure', 'legend', 'geolocation', 'core', 'api', 'angular-gettext', 'bootstrap', 'translations', 'compositions', 'status_creator', 'ows', 'feature_filter'],
+define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', 'search', 'print', 'permalink', 'measure', 'legend', 'geolocation', 'core', 'api', 'angular-gettext', 'bootstrap', 'translations', 'compositions', 'status_creator', 'ows', 'feature_filter', 'angular-material'],
 
     function(angular, ol, toolbar, layermanager) {
         var module = angular.module('hs', [
@@ -15,8 +15,16 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
             'gettext',
             'hs.compositions', 'hs.status_creator',
             'hs.sidebar',
-            'hs.feature_filter'
-        ]);
+            'hs.feature_filter',
+            'ngMaterial'
+        ])
+        
+        .config(function($mdThemingProvider) {
+            $mdThemingProvider.theme('default')
+                .primaryPalette('brown', {
+                    'default': '700'
+                })
+        });
 
         module.directive('hs', ['hs.map.service', 'Core', function(OlMap, Core) {
             return {
@@ -51,6 +59,14 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                     source: new ol.source.Vector({
                         format: new ol.format.GeoJSON(),
                         url: 'best_practices.json'
+                    }),
+                    style: new ol.style.Style({
+                        image: new ol.style.Icon(({
+                            crossOrigin: 'anonymous',
+                            src: 'marker.png',
+                            anchor: [0.5, 1],
+                            scale: 0.35,
+                        }))
                     }),
                     hsFilters: [
                         {
