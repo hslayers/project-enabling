@@ -18,6 +18,7 @@
     "protractor": "protractor test/protractor-conf.js"
   },
   "dependencies": {
+    "browserify": "^16.2.3",
     "jquery": "^3.3.1",
     "requirejs": "^2.3.5"
   }
