@@ -17,6 +17,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
             'hs.sidebar',
             'hs.feature_filter',
             'ngMaterial'
+            
         ])
         
         .config(function($mdThemingProvider) {
@@ -91,7 +92,15 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                         //     values: [],
                         //     gatherValues: true
                         // }
-                    ]
+                    ],
+                    hsQueryFields: 
+                       { 
+                           title: "name",
+                           subtitle: "country",
+                           description: "annotation"                    
+                     }
+
+                    
                 })
             ],
             //project_name: 'hslayers',
@@ -140,10 +149,11 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
             }
         });
 
-        module.controller('Main', ['$scope', '$rootScope', 'Core', 'hs.query.baseService', 'hs.compositions.service_parser', 'hs.feature_filter.service', 'hs.layermanager.service',
-            function($scope, $rootScope, Core, BaseService, composition_parser, FeatureFilter, LayMan) {
+        module.controller('Main', ['$scope', '$rootScope', 'Core','hs.map.service', 'hs.query.baseService', 'hs.compositions.service_parser', 'hs.feature_filter.service', 'hs.layermanager.service','hs.query.vectorService','config',
+            function($scope, $rootScope, Core, OlMap,  BaseService, composition_parser, FeatureFilter, LayMan, vectorService,config) {
                 $scope.hsl_path = hsl_path; //Get this from hslayers.js file
                 $scope.Core = Core;
+                // BaseService.queryActive = true;
                 $rootScope.$on('layermanager.layer_added', function (e, layer) {
                     if (layer.hsFilters) LayMan.currentLayer = layer;
                     // me.prepLayerFilter(layer);
@@ -161,10 +171,12 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                     //     });
                     // }
                 });
+                // BaseService.activateQueries();
                 Core.setMainPanel('composition_browser');
                 //composition_parser.load('http://www.whatstheplan.eu/wwwlibs/statusmanager2/index.php?request=load&id=972cd7d1-e057-417b-96a7-e6bf85472b1e');
                 $scope.$on('query.dataUpdated', function(event) {
                     if (console) console.log('Attributes', BaseService.data.attributes, 'Groups', BaseService.data.groups);
+
                 });
             }
         ]);
