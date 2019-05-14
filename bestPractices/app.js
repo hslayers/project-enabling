@@ -58,6 +58,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                 }),
                 new ol.layer.Vector({
                     title: "Farming Best Practices",
+                    queryDialog: false,
                     source: new ol.source.Vector({
                         format: new ol.format.GeoJSON(),
                         url: 'best_practices.json'
@@ -98,8 +99,8 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                            title: "name",
                            subtitle: "country",
                            description: "annotation"                    
-                     }
-
+                     },
+                     
                     
                 })
             ],
