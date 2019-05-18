@@ -1,3 +1,4 @@
+
 <!-- <md-button ng-if="Core.exists('hs.geolocation.controller')" class="md-fab md-mini md-fab-bottom-left geolocation" ng-click="geolocation.toggleGps()">
 	<md-icon md-icon-set="material-icons" class="geolocation material-icons {{location.status.class}}">{{location.status.icon}}</md-icon>
 </md-button>
@@ -7,3 +8,16 @@
 </md-button>
 
 <div ng-controller="hs.query.controller" id="infopanel" ng-if="Core.exists('hs.query.controller')" ng-show="Core.panelVisible('info', this)"></div> -->
+
+<md-button class="md-fab md-mini md-fab-top-right " style="background-color:rgb(93,64,55)" ng-click="defaultView()">
+	<md-tooltip md-direction="left">Default</md-tooltip>
+	<md-icon md-icon-set="material-icons">home</md-icon>
+</md-button>
+
+<md-button class="md-fab md-mini md-fab-top-right "  style="margin-top: 4em; background-color:  rgb(93,64,55)" ng-click="maxView()">
+	<md-tooltip md-direction="left">Max</md-tooltip>
+	<md-icon md-icon-set="material-icons">language</md-icon>
+</md-button>
+	<!-- <md-button class="md-fab md-mini md-fab-top-right " ng-click="maxVieW()">
+		<md-icon md-icon-set="material-icons">face</md-icon>
+	</md-button> -->
