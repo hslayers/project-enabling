@@ -43,14 +43,16 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
             query: {
                 multi: true
             },
+            queryPoint: 'hidden',
             sidenav_template: "sidenav.html",
             overlay_template: "overlay.html",
             toolbar_template: "toolbar.html",
             // infopanel_template: "satelliteMetadataQuery.html",
             default_layers: [
                 new ol.layer.Tile({
-                    source: new ol.source.OSM({
-                        wrapX: false
+                    source: new ol.source.XYZ({
+                        attributions: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
+                        url: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png?lang=en'
                     }),
                     title: "Base layer",
                     base: true
@@ -64,9 +66,9 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                     style: new ol.style.Style({
                         image: new ol.style.Icon(({
                             crossOrigin: 'anonymous',
-                            src: 'marker_dk.png',
-                            anchor: [0.5, 1],
-                            scale: 0.4,
+                            src: 'enabling_logo_2_relief02_stin.png',
+                            anchor: [0.5, 0.5],
+                            scale: 0.7,
                         }))
                     }),
                     hsFilters: [
@@ -160,6 +162,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                     //         }
                     //     });
                     // }
+                    BaseService.activateQueries();
                 });
                 Core.setMainPanel('composition_browser');
                 //composition_parser.load('http://www.whatstheplan.eu/wwwlibs/statusmanager2/index.php?request=load&id=972cd7d1-e057-417b-96a7-e6bf85472b1e');
