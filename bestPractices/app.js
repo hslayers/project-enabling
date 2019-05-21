@@ -66,9 +66,9 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                     style: new ol.style.Style({
                         image: new ol.style.Icon(({
                             crossOrigin: 'anonymous',
-                            src: 'enabling_logo_2_relief02_stin.png',
+                            src: 'enabling_logo_2_relief12_stin.png',
                             anchor: [0.5, 0.5],
-                            scale: 0.7,
+                            scale: 0.5,
                         }))
                     }),
                     hsFilters: [
