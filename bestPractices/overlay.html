@@ -9,13 +9,20 @@
 
 <div ng-controller="hs.query.controller" id="infopanel" ng-if="Core.exists('hs.query.controller')" ng-show="Core.panelVisible('info', this)"></div> -->
 
+<section layout="row" class="buttons bottom-right">
+	<md-button class="md-icon-button attributions-button" ng-click="openAttributionsPanel($event)">
+		<md-tooltip md-direction="top">Attributions</md-tooltip>
+		<md-icon md-icon-set="material-icons">info</md-icon>
+	</md-button>
+</section>
+
 <section layout="row" class="buttons top-right">
-	<md-button class="md-fab md-mini" style="background-color: rgb(93,64,55)" ng-click="defaultView()">
+	<md-button class="md-fab md-mini md-hue-3" ng-click="defaultView()">
 		<md-tooltip md-direction="bottom">Default</md-tooltip>
 		<md-icon md-icon-set="material-icons">home</md-icon>
 	</md-button>
 	
-	<md-button class="md-fab md-mini"  style="background-color: rgb(93,64,55)" ng-click="maxView()">
+	<md-button class="md-fab md-mini md-hue-3" ng-click="maxView()">
 		<md-tooltip md-direction="bottom">Zoom to all features</md-tooltip>
 		<md-icon md-icon-set="material-icons">language</md-icon>
 	</md-button>

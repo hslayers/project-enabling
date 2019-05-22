@@ -25,6 +25,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                     'default': '700',
                     'hue-1': '400'
                 })
+                .accentPalette('brown')
         });
 
         module.directive('hs', ['hs.map.service', 'Core', function(OlMap, Core) {
@@ -61,7 +62,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                     title: "Farming Best Practices",
                     source: new ol.source.Vector({
                         format: new ol.format.GeoJSON(),
-                        url: 'best_practices.json'
+                        url: 'best_practices.json',
                     }),
                     style: new ol.style.Style({
                         image: new ol.style.Icon(({
@@ -100,8 +101,10 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
             project_name: 'Material',
             default_view: new ol.View({
                 center: ol.proj.transform([8.3927408, 46.9205358], 'EPSG:4326', 'EPSG:3857'), //Latitude longitude    to Spherical Mercator
-                zoom: 5,
-                units: "m"
+                zoom: 4,
+                units: "m",
+                maxZoom: 9,
+                minZoom: 2,
             }),
             hostname: {
                 "default": {

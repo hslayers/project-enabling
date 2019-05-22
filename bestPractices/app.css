@@ -1,53 +1,53 @@
-div.card-list {
-    overflow-y: scroll;
+button.attributions-button md-icon {
+    /* color: rgba(141,110,99,0.75); */
+    color: rgba(93,64,55,0.75);
 }
 
-div.feature-list {
-    max-height: 100%;
+/* md-content .main-content {
+    background-color: initial;
+} */
+
+md-content .additional-content {
+    max-width: 50em;
+    margin: 2em auto;
 }
 
-div.feature-list md-content img {
-    max-width: 100%;
-    /* max-height: 33vh; */
-    padding: 4px;
+md-content .additional-content .heading {
+    background-color: #d6e3bc;
 }
 
-div.feature-list md-content .img-float {
-    float: right;
-    max-width: 100%;
-    /* max-height: 33vh; */
-    height: auto;
+md-content .additional-content .heading {
+    padding-top: 8px;
 }
 
-div.feature-list md-content .content-body {
-    float: none;
-}
-
-.content-column {
-    margin: 8px;
-}
-
-.content-column :first-child, .content-body :first-child {
-    padding-top: 0;
+/* md-content .additional-content .heading:first-child {
     margin-top: 0;
+    padding-top: 16px;
+} */
+
+div.feature-list:not(.card-list) md-content {
+    background-color: #eaf1dd;
 }
 
-div.feature-list md-content .heading {
-    margin-bottom: 0;
-    padding-bottom: 4px;
+md-content table tr:nth-child(odd) {
+    background-color: #d6e3bc;
 }
 
-div.feature-list md-content .heading + p {
-    margin-top: 0;
-    padding-top: 4px;
+md-content table tr:nth-child(even) {
+    background-color: #eaf1dd;
 }
 
-md-content p {
+md-content table td:first-child {
+    font-weight: 500;
+}
+
+md-content table td {
+    padding: 8px;
+}
+
+md-content p, md-content td {
     white-space: pre-wrap;
-}
-
-md-card {
-    transition: background-color 0.25s;
+    vertical-align: text-top;
 }
 
 md-card md-card-title {
@@ -65,14 +65,7 @@ md-card md-card-title md-card-title-text:only-child .md-subhead {
     line-height: 20px;
 }
 
-md-card.highlighted {
-    background-color: lightgray;
-}
-
 .md-headline {
-    /* font-size: 20px;
-    line-height: 28px;
-    font-weight: 500; */
     font-size: 16px;
     line-height: 20px;
     font-weight: 600;
@@ -85,19 +78,11 @@ md-card.highlighted {
     md-content.card-collection {
         column-count: 3;
     }
-
-    div.feature-list md-content .img-float {
-        width: 50%;
-    }
 }
 
 @media (min-width: 1280px) { /* gt-lg */
     md-content.card-collection {
         column-count: 4;
-    }
-    
-    div.feature-list md-content .img-float {
-        width: calc(200% / 3);
     }
 }
 
