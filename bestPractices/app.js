@@ -75,7 +75,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                     hsFilters: [
                         {
                             title: "Country",
-                            valueField: "country",
+                            valueField: "SU_A3",
                             type: {
                                 type: "fieldset",
                             },

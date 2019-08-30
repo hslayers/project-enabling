@@ -46,8 +46,13 @@ md-content table td {
 }
 
 md-content p, md-content td {
-    white-space: pre-wrap;
+    /* white-space: pre-wrap; */
     vertical-align: text-top;
+}
+
+md-content ul {
+    white-space: pre-line;
+    list-style: unset;
 }
 
 md-card md-card-title {
