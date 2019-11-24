@@ -8,6 +8,13 @@ md-content .content-body .content-info * {
     margin-block-end: 0em;
 }
 
+.md-dialog-content img {
+    display: block;
+    margin: 0 auto;
+    max-width: 752px;
+    height: auto;
+}
+
 .ol-popup-closer {
     display: none;
 }

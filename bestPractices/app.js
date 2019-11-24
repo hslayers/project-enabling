@@ -49,6 +49,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
             overlay_template: "overlay.html",
             toolbar_template: "toolbar.html",
             // infopanel_template: "satelliteMetadataQuery.html",
+            help_template: "help.html",
             default_layers: [
                 new ol.layer.Tile({
                     source: new ol.source.XYZ({
