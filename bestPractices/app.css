@@ -32,7 +32,7 @@ md-content .content-body .content-info * {
 
 .ol-popup-content {
     font-size: small;
-    min-with: unset;
+    min-width: unset;
 }
 
 .ol-popup-closer {
