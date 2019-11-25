@@ -15,6 +15,26 @@ md-content .content-body .content-info * {
     height: auto;
 }
 
+.md-dialog-content h3:first-child {
+    margin-top: 0;
+}
+
+.md-dialog-content h3:not(:first-child) {
+    margin-top: 2em;
+}
+
+.ol-popup {
+    padding: 10px 15px 10px 10px;
+    max-width: 10em;
+    height: min-content;
+    width: max-content;
+}
+
+.ol-popup-content {
+    font-size: small;
+    min-with: unset;
+}
+
 .ol-popup-closer {
     display: none;
 }
