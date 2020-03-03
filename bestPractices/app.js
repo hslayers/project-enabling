@@ -63,7 +63,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                     title: "Farming Best Practices",
                     source: new ol.source.Vector({
                         format: new ol.format.GeoJSON(),
-                        url: 'best_practices.json',
+                        url: 'https://db.atlasbestpractices.com/project-geo-json/2/',
                     }),
                     style: new ol.style.Style({
                         image: new ol.style.Icon(({
