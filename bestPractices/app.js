@@ -18,7 +18,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
             'hs.feature_filter',
             'ngMaterial'
         ])
-        
+
         .config(function($mdThemingProvider) {
             $mdThemingProvider.theme('default')
                 .primaryPalette('brown', {
@@ -73,6 +73,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                             scale: 0.5,
                         }))
                     }),
+                    featureURI: 'bp_uri',
                     hsFilters: [
                         {
                             title: "Country",
