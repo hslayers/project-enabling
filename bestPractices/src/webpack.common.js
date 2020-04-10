@@ -21,7 +21,7 @@ module.exports = {
     // Path where bundled files will be output
     path: path.resolve(__dirname, '../static'),
     // Path at which output assets will be served
-    publicPath: ''
+    publicPath: 'static/'
   },
   // Just for build speed improvement
   resolve: { symlinks: true,

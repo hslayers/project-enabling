@@ -1,4 +1,5 @@
 'use strict';
+import 'toolbar.module';
 import 'compositions.module';
 import 'core.module';
 import 'feature-filter.module';
@@ -10,7 +11,13 @@ import 'permalink.module';
 import 'print.module';
 import 'query.module';
 import 'search.module';
-import 'sidebar.module';
+import 'angular-material';
+import { Vector, Tile } from 'ol/layer';
+import { XYZ, Vector as VectorSource } from 'ol/source';
+import { GeoJSON } from 'ol/format';
+import { Style, Icon } from 'ol/style';
+import { transform } from 'ol/proj';
+import View from 'ol/View';
 
 var module = angular.module('hs', [
 	'hs.toolbar',
@@ -21,8 +28,7 @@ var module = angular.module('hs', [
 	'hs.legend', 'hs.geolocation', 'hs.core',
 	'gettext',
 	'hs.compositions',
-	'hs.sidebar',
-	'hs.feature_filter',
+	'hs.featureFilter',
 	'ngMaterial'
 ])
 
@@ -37,7 +43,7 @@ var module = angular.module('hs', [
 
 module.directive('hs', ['hs.map.service', 'Core', function(OlMap, Core) {
 	return {
-		templateUrl: hsl_path + 'hslayers.html',
+        template: Core.hslayersNgTemplate,
 		link: function(scope, element) {
 			Core.fullScreenMap(element);
 		}
@@ -59,22 +65,22 @@ module.value('config', {
 	help_template: "help.html",
 	acknowledgement_template: "acknowledgement.html",
 	default_layers: [
-		new ol.layer.Tile({
-			source: new ol.source.XYZ({
+		new Tile({
+			source: new XYZ({
 				attributions: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
 				url: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png?lang=en'
 			}),
 			title: "Base layer",
 			base: true
 		}),
-		new ol.layer.Vector({
+		new Vector({
 			title: "Farming Best Practices",
-			source: new ol.source.Vector({
-				format: new ol.format.GeoJSON(),
+			source: new VectorSource({
+				format: new GeoJSON(),
 				url: 'https://db.atlasbestpractices.com/project-geo-json/2/',
 			}),
-			style: new ol.style.Style({
-				image: new ol.style.Icon(({
+			style: new Style({
+				image: new Icon(({
 					crossOrigin: 'anonymous',
 					src: 'enabling_logo_2_relief12_stin.png',
 					anchor: [0.5, 0.5],
@@ -109,8 +115,8 @@ module.value('config', {
 	],
 	//project_name: 'hslayers',
 	project_name: 'Material',
-	default_view: new ol.View({
-		center: ol.proj.transform([8.3927408, 46.9205358], 'EPSG:4326', 'EPSG:3857'), //Latitude longitude    to Spherical Mercator
+	default_view: new View({
+		center: transform([8.3927408, 46.9205358], 'EPSG:4326', 'EPSG:3857'), //Latitude longitude    to Spherical Mercator
 		zoom: 4,
 		units: "m",
 		maxZoom: 9,
@@ -143,27 +149,17 @@ module.value('config', {
 
 	'catalogue_url': caturl || '/php/metadata/csw/',
 	'compositions_catalogue_url': caturl || '/php/metadata/csw/',
-	status_manager_url: '/wwwlibs/statusmanager/index.php',
-
-	createExtraMenu: function($compile, $scope, element) {
-		$scope.uploadClicked = function() {
-			alert("UPLOAD!")
-		}
-		var el = angular.element("<li class=\"sidebar-item\" ng-click=\"uploadClicked()\" ><a href=\"#\"><span class=\"menu-icon glyphicon icon-cloudupload\"></span><span class=\"sidebar-item-title\">Upload</span></a></li>");
-		element.find('ul').append(el);
-		$compile(el)($scope);
-	}
+	status_manager_url: '/wwwlibs/statusmanager/index.php'
 });
 
-module.controller('Main', ['$scope', '$rootScope', 'Core', 'hs.query.baseService', 'hs.compositions.service_parser', 'hs.feature_filter.service', 'hs.layermanager.service',
+module.controller('Main', ['$scope', '$rootScope', 'Core', 'hs.query.baseService', 'hs.compositions.service_parser', 'hs.featureFilter.service', 'hs.layermanager.service',
 	function($scope, $rootScope, Core, BaseService, composition_parser, FeatureFilter, LayMan) {
-		$scope.hsl_path = hsl_path; //Get this from hslayers.js file
 		$scope.Core = Core;
 		$rootScope.$on('layermanager.layer_added', function (e, layer) {
 			if (layer.hsFilters) LayMan.currentLayer = layer;
 			// me.prepLayerFilter(layer);
 
-			// if (layer.layer instanceof ol.layer.Vector) {
+			// if (layer.layer instanceof Vector) {
 			//     var source = layer.layer.getSource();
 			//     console.log(source.getState());
 			//     var listenerKey = source.on('change', function (e) {
