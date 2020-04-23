@@ -87,6 +87,14 @@ module.value('config', {
 					scale: 0.5,
 				}))
 			}),
+			highlightedStyle: new Style({
+				image: new Icon(({
+					crossOrigin: 'anonymous',
+					src: 'enabling_logo_2_relief11_stin.png',
+					anchor: [0.5, 0.5],
+					scale: 0.5,
+				}))
+			}),
 			featureURI: 'bp_uri',
 			hsFilters: [
 				{
