@@ -4,26 +4,16 @@
   <meta charset="utf-8">
   <title>Best Practices</title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <meta name="apple-mobile-web-app-capable" content="yes" >
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  
-    <style>
-      #hs-app {
-        position: relative; 
-        height: 100vh
-      }
-      @media only screen and (max-width: 600px) {
-      #hs-app {
-        height: calc(100vh - 96px)
-      }
-    }
-    </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 </head>
-<body >
-    <div hs ng-app="hs" ng-controller="Main" id="hs-app"></div>
-    
-      <script type="application/javascript" src="static/app.bundle.js"></script>
-    
+<body style="margin: 0">
+    <div hs ng-app="hs" ng-controller="Main" style="position: relative;"></div>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/requirejs/require.js"></script>    
+    <script src="hslayers.js"></script> 
 </body>
+<link rel="stylesheet" href="app.css">
 </html>
