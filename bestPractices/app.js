@@ -88,6 +88,26 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
                             gatherValues: true
                         },
                         // {
+                        //     title: "Product",
+                        //     valueField: "product",
+                        //     type: {
+                        //         type: "fieldset",
+                        //     },
+                        //     selected: undefined,
+                        //     values: [],
+                        //     gatherValues: true
+                        // },
+                        {
+                            title: "Collected By",
+                            valueField: "partner",
+                            type: {
+                                type: "fieldset",
+                            },
+                            selected: undefined,
+                            values: [],
+                            gatherValues: true
+                        }
+                        // {
                         //     title: "Practice type",
                         //     valueField: "type",
                         //     type: {
