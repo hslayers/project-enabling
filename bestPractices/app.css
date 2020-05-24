@@ -98,12 +98,12 @@ md-content ul {
 }
 
 md-card md-card-title {
-    padding: 16px 16px 12px;
+    padding: 16px 12px 0px 12px;
 	flex: initial;
 }
 
-md-card-content {
-    padding: 12px;
+md-card md-card-content {
+    padding: 0 12px;
     font-size: .9rem;
 }
 
