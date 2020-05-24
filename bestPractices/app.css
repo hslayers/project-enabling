@@ -143,7 +143,7 @@ md-card md-card-title md-card-title-text:only-child .md-subhead {
 	}
 }
 
-@media (min-width: 1920px) { /* xl */
+@media (min-width: 1520px) {
 	.card-list md-card {
 		flex: 0 1 calc(100% / 4 - 1em);
 		margin: .5em;
