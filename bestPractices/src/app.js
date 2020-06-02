@@ -41,18 +41,19 @@ var module = angular.module('hs', [
 		.accentPalette('brown')
 });
 
-module.directive('hs', ['hs.map.service', 'Core', function(OlMap, Core) {
+module.directive('hs', function(HsMapService, HsCore) {
+	'ngInject';
 	return {
-        template: Core.hslayersNgTemplate,
+        template: HsCore.hslayersNgTemplate,
 		link: function(scope, element) {
-			Core.fullScreenMap(element);
+			HsCore.fullScreenMap(element);
 		}
 	};
-}]);
+});
 
 var caturl = "/php/metadata/csw/index.php";
 
-module.value('config', {
+module.value('HsConfig', {
 	design: 'md',
 	query: {
 		multi: true
@@ -152,9 +153,9 @@ module.value('config', {
 	status_manager_url: '/wwwlibs/statusmanager/index.php'
 });
 
-module.controller('Main', ['$scope', '$rootScope', 'Core', 'hs.query.baseService', 'hs.compositions.service_parser', 'hs.featureFilter.service', 'hs.layermanager.service',
-	function($scope, $rootScope, Core, BaseService, composition_parser, FeatureFilter, LayMan) {
-		$scope.Core = Core;
+module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService', 'HsCompositionsParserService', 'HsFeatureFilterService', 'HsLayermanagerService',
+	function($scope, $rootScope, HsCore, BaseService, composition_parser, FeatureFilter, LayMan) {
+		$scope.HsCore = HsCore;
 		$rootScope.$on('layermanager.layer_added', function (e, layer) {
 			if (layer.hsFilters) LayMan.currentLayer = layer;
 			// me.prepLayerFilter(layer);
@@ -173,7 +174,7 @@ module.controller('Main', ['$scope', '$rootScope', 'Core', 'hs.query.baseService
 			// }
 			BaseService.activateQueries();
 		});
-		Core.setMainPanel('composition_browser');
+		HsCore.setMainPanel('composition_browser');
 		//composition_parser.load('http://www.whatstheplan.eu/wwwlibs/statusmanager2/index.php?request=load&id=972cd7d1-e057-417b-96a7-e6bf85472b1e');
 		$scope.$on('query.dataUpdated', function(event) {
 			if (console) console.log('Attributes', BaseService.data.attributes, 'Groups', BaseService.data.groups);
