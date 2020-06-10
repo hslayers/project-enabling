@@ -50,6 +50,7 @@ module.exports = merge(common, {
         exclude: path.resolve(__dirname, '../src/index.html'),
           use: [
             'ng-cache-loader?prefix=[dir]/[dir]',
+			// 'file-loader?name=[name].[ext]',
             'extract-loader',
             'html-loader'
           ]
