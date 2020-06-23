@@ -6,6 +6,8 @@ import 'layermanager.module';
 import 'map.module';
 import 'permalink.module';
 import 'query.module';
+
+import * as angular from 'angular';
 import 'angular-material';
 import { Vector, Tile } from 'ol/layer';
 import { XYZ, Vector as VectorSource } from 'ol/source';
@@ -15,16 +17,17 @@ import { transform } from 'ol/proj';
 import View from 'ol/View';
 import {unByKey} from 'ol/Observable';
 
-import Logo from './enabling_logo.png';
-import EUFlag from './img/eu_flag.jpg';
-import help_01_0676x0180 from './img/help_01_0676x0180.png';
-import help_02_0475x0518 from './img/help_02_0475x0518.png';
-import help_03_0475x0518 from './img/help_03_0475x0518.png';
-import help_04_1083x0940 from './img/help_04_1083x0940.png';
-import help_05_1083x0937 from './img/help_05_1083x0937.png';
-import help_06_0203x0120 from './img/help_06_0203x0120.png';
+/* import Logo from './enabling_logo.png'; */
+/* import EUFlag from './img/eu_flag.jpg'; */
+/* import help_01_0676x0180 from './img/help_01_0676x0180.png'; */
+/* import help_02_0475x0518 from './img/help_02_0475x0518.png'; */
+/* import help_03_0475x0518 from './img/help_03_0475x0518.png'; */
+/* import help_04_1083x0940 from './img/help_04_1083x0940.png'; */
+/* import help_05_1083x0937 from './img/help_05_1083x0937.png'; */
+/* import help_06_0203x0120 from './img/help_06_0203x0120.png'; */
 
-var module = angular.module('hs', [
+export default angular.
+	module('hs', [
 	'hs.toolbar',
 	'hs.layermanager',
 	'hs.map',
@@ -42,22 +45,22 @@ var module = angular.module('hs', [
 			'hue-1': '400'
 		})
 		.accentPalette('brown')
-});
-
-module.directive('hs', function(HsMapService, HsCore) {
-	'ngInject';
-	return {
-        template: HsCore.hslayersNgTemplate,
-		link: function(scope, element) {
-			HsCore.fullScreenMap(element);
-		}
-	};
-});
-
-var caturl = '/php/metadata/csw/index.php';
-
-module.value('HsConfig', {
-	appLogo: Logo,
+})
+.directive('hs', [
+	'HsConfig',
+	'HsCore',
+	function(config, Core) {
+		return {
+			template: Core.hslayersNgTemplate,
+			link: function(scope, element) {
+				Core.fullScreenMap(element);
+			}
+		};
+	},
+])
+.value('HsConfig', {
+	/* appLogo: Logo, */
+	appLogo: './enabling_logo.png',
 	design: 'md',
 	query: {
 		multi: true
@@ -72,15 +75,15 @@ module.value('HsConfig', {
 		help: require('help.html'),
 		acknowledgement: require('acknowledgement.html')
 	},
-	images: {
-		'eu_flag': EUFlag,
-		'help_01_0676x0180': help_01_0676x0180,
-		'help_02_0475x0518': help_02_0475x0518,
-		'help_03_0475x0518': help_03_0475x0518,
-		'help_04_1083x0940': help_04_1083x0940,
-		'help_05_1083x0937': help_05_1083x0937,
-		'help_06_0203x0120': help_06_0203x0120
-	},
+	/* images: { */
+	/* 	'eu_flag': EUFlag, */
+	/* 	'help_01_0676x0180': help_01_0676x0180, */
+	/* 	'help_02_0475x0518': help_02_0475x0518, */
+	/* 	'help_03_0475x0518': help_03_0475x0518, */
+	/* 	'help_04_1083x0940': help_04_1083x0940, */
+	/* 	'help_05_1083x0937': help_05_1083x0937, */
+	/* 	'help_06_0203x0120': help_06_0203x0120 */
+	/* }, */
 	default_layers: [
 		new Tile({
 			source: new XYZ({
@@ -164,12 +167,12 @@ module.value('HsConfig', {
 	//compositions_catalogue_url: 'http://erra.ccss.cz/php/metadata/csw/index.php',
 	//status_manager_url: '/wwwlibs/statusmanager2/index.php',
 
-	'catalogue_url': caturl || '/php/metadata/csw/',
-	'compositions_catalogue_url': caturl || '/php/metadata/csw/',
+    compositions_catalogue_url:
+      '/php/catalogue/libs/cswclient/cswClientRun.php',
 	status_manager_url: '/wwwlibs/statusmanager/index.php'
-});
+})
 
-module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService', 'HsCompositionsParserService', 'HsFeatureFilterService', 'HsLayermanagerService',
+.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService', 'HsCompositionsParserService', 'HsFeatureFilterService', 'HsLayermanagerService',
 	function($scope, $rootScope, HsCore, BaseService, composition_parser, HsFeatureFilter, LayMan) {
 		$scope.HsCore = HsCore;
 		$rootScope.$on('layermanager.layer_added', function (e, layer) {
