@@ -20,7 +20,7 @@
     "protractor": "protractor test/protractor-conf.js"
   },
   "dependencies": {
-    "hslayers-ng": "^1.24.0"
+    "hslayers-ng": "^1.24.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
