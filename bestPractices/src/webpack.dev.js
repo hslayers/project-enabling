@@ -49,9 +49,9 @@ module.exports = merge(common, {
         test: /\.html$/,
         exclude: path.resolve(__dirname, '../src/index.html'),
           use: [
-            // 'ng-cache-loader?prefix=[dir]/[dir]',
+            'ng-cache-loader?prefix=[dir]/[dir]',
 			// 'file-loader?name=[name].[ext]',
-            // 'extract-loader',
+            'extract-loader',
             'html-loader'
           ]
       },
