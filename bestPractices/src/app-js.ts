@@ -1,11 +1,11 @@
 'use strict';
-import 'toolbar.module';
-import 'core.module';
-import 'feature-filter.module';
-import 'layermanager.module';
-import 'map.module';
-import 'permalink.module';
-import 'query.module';
+import 'hslayers-ng/components/toolbar/toolbar.module';
+import 'hslayers-ng/components/core/core.module';
+import 'hslayers-ng/components/feature-filter/feature-filter.module';
+import 'hslayers-ng/components/layermanager/layermanager.module';
+import 'hslayers-ng/components/map/map.module';
+import 'hslayers-ng/components/permalink/permalink.module';
+import 'hslayers-ng/components/query/query.module';
 
 import * as angular from 'angular';
 import 'angular-material';
