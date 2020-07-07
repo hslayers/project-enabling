@@ -205,7 +205,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
 					window['ga-disable-UA-171782968-1'] = false;
 					
 					gtag('js', new Date());
-					gtag('config', 'GA_MEASUREMENT_ID');
+					gtag('config', 'UA-171782968-1');
 
 					$mdBottomSheet.hide();
 				};
