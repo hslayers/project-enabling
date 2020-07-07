@@ -194,7 +194,7 @@ define(['angular', 'ol', 'sidebar', 'toolbar', 'layermanager', 'map', 'query', '
 					});
 				} else {
 					gtag('js', new Date());
-					gtag('config', 'GA_MEASUREMENT_ID');
+					gtag('config', 'UA-171782968-1');
 				}
 					
 
