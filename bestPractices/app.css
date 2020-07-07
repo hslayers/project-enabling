@@ -61,6 +61,16 @@ md-content .additional-content .heading {
     padding-top: 16px;
 } */
 
+md-content .additional-content div.video {
+    padding-top: 16px;
+}
+
+md-content .additional-content div.video iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 div.feature-list:not(.card-list) md-content {
     background-color: #eaf1dd;
 }
