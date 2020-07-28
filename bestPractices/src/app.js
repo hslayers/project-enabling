@@ -15,6 +15,12 @@ import { transform } from 'ol/proj';
 import View from 'ol/View';
 import {unByKey} from 'ol/Observable';
 
+import 'angular-material/angular-material.css';
+import 'ol/ol.css';
+import 'css/app.css';
+import 'css/whhg-font/css/whhg.css';
+import './app.css';
+
 var module = angular.module('hs', [
 	'hs.toolbar',
 	'hs.layermanager',
@@ -38,7 +44,7 @@ var module = angular.module('hs', [
 module.directive('hs', function(HsMapService, HsCore) {
 	'ngInject';
 	return {
-        template: HsCore.hslayersNgTemplate,
+		template: HsCore.hslayersNgTemplate,
 		link: function(scope, element) {
 			HsCore.fullScreenMap(element);
 		}
@@ -50,8 +56,9 @@ var caturl = '/php/metadata/csw/index.php';
 module.value('HsConfig', {
 	appLogo: './enabling_logo.png',
 	design: 'md',
+	loadCss: false,
 	query: {
-		multi: true
+		multi: false
 	},
 	queryPoint: 'hidden',
 	directiveTemplates: {
@@ -86,6 +93,22 @@ module.value('HsConfig', {
 					scale: 0.5,
 				}))
 			}),
+			selectedStyle: new Style({
+				image: new Icon(({
+					crossOrigin: 'anonymous',
+					src: 'enabling_logo_2_relief11_stin.png',
+					anchor: [0.5, 0.5],
+					scale: 0.5,
+				}))
+			}),
+			highlightedStyle: new Style({
+				image: new Icon(({
+					crossOrigin: 'anonymous',
+					src: 'enabling_logo_2_relief11_stin.png',
+					anchor: [0.5, 0.5],
+					scale: 0.5,
+				}))
+			}),
 			featureURI: 'bp_uri',
 			hsFilters: [
 				{
@@ -100,14 +123,14 @@ module.value('HsConfig', {
 					gatherValues: true
 				},
 				// {
-				//     title: 'Practice type',
-				//     valueField: 'type',
-				//     type: {
-				//         type: 'fieldset',
-				//     },
-				//     selected: undefined,
-				//     values: [],
-				//     gatherValues: true
+				//	 title: 'Practice type',
+				//	 valueField: 'type',
+				//	 type: {
+				//		 type: 'fieldset',
+				//	 },
+				//	 selected: undefined,
+				//	 values: [],
+				//	 gatherValues: true
 				// }
 			]
 		})
@@ -115,7 +138,7 @@ module.value('HsConfig', {
 	//project_name: 'hslayers',
 	project_name: 'Material',
 	default_view: new View({
-		center: transform([8.3927408, 46.9205358], 'EPSG:4326', 'EPSG:3857'), //Latitude longitude    to Spherical Mercator
+		center: transform([8.3927408, 46.9205358], 'EPSG:4326', 'EPSG:3857'), //Latitude longitude	to Spherical Mercator
 		zoom: 4,
 		units: 'm',
 		maxZoom: 9,
@@ -151,56 +174,50 @@ module.value('HsConfig', {
 	status_manager_url: '/wwwlibs/statusmanager/index.php'
 });
 
-module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService', 'HsCompositionsParserService', 'HsFeatureFilterService', 'HsLayermanagerService',
-	function($scope, $rootScope, HsCore, BaseService, composition_parser, HsFeatureFilter, LayMan) {
+module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService', 'HsQueryVectorService', 'HsCompositionsParserService', 'HsFeatureFilterService', 'HsLayermanagerService',
+	function($scope, $rootScope, HsCore, BaseService, VectorService, composition_parser, HsFeatureFilter, LayMan) {
 		$scope.HsCore = HsCore;
 		$rootScope.$on('layermanager.layer_added', function (e, layer) {
 			if (layer.hsFilters) LayMan.currentLayer = layer;
 			HsFeatureFilter.prepLayerFilter(layer);
 
 			if (layer.layer instanceof Vector) {
-			    var source = layer.layer.getSource();
-			    console.log(source.getState());
-			    var listenerKey = source.on('change', function (e) {
-			        if (source.getState() === 'ready') {
-			            console.log(source.getState());
-			            unByKey(listenerKey);
-			            HsFeatureFilter.prepLayerFilter(layer);
-			            HsFeatureFilter.applyFilters(layer);
-			        }
-			    });
+				var source = layer.layer.getSource();
+				console.log(source.getState());
+				var listenerKey = source.on('change', function (e) {
+					if (source.getState() === 'ready') {
+						console.log(source.getState());
+						unByKey(listenerKey);
+						HsFeatureFilter.prepLayerFilter(layer);
+						HsFeatureFilter.applyFilters(layer);
+					}
+				});
 			}
 			BaseService.activateQueries();
 		});
 
-        const customSidenav = () => {
-            return {
-                template: require('test.html')
-            };
-        }
+		// $scope.$on('scope_loaded', (event, args) => {
+		//	 if (args === 'Layout') {
+		// let existing = angular.module('hs.layout');
+		// let newModule = angular.module('hs.layout', existing.requires);
+		// existing['_invokeQueue'].forEach(function (def) {
+		//	 // console.log(def[2][0]);
+		//	 // console.log(def);
+		//	 switch(def[2][0]){
+		//		 case 'hs.mdSidenav.directive':
+		//			 newModule.component('hs.mdSidenav.directive', customSidenav);
+		//			 break;
+		//		 default:
+		//			 // def[1] containes: 'service', 'directive', 'component' etc.
+		//			 // def[2][0] contains name of the directive comonent etc.
+		//			 // def[2][1] is directives dependecies and the last is function as usual
+		//			 let method = def[1];
 
-        // $scope.$on('scope_loaded', (event, args) => {
-        //     if (args === 'Layout') {
-        // let existing = angular.module('hs.layout');
-        // let newModule = angular.module('hs.layout', existing.requires);
-        // existing['_invokeQueue'].forEach(function (def) {
-        //     // console.log(def[2][0]);
-        //     // console.log(def);
-        //     switch(def[2][0]){
-        //         case 'hs.mdSidenav.directive':
-        //             newModule.component('hs.mdSidenav.directive', customSidenav);
-        //             break;
-        //         default:
-        //             // def[1] containes: 'service', 'directive', 'component' etc.
-        //             // def[2][0] contains name of the directive comonent etc.
-        //             // def[2][1] is directives dependecies and the last is function as usual
-        //             let method = def[1];
+		//			 if (def[0] === '$controllerProvider') method = 'controller';
 
-        //             if (def[0] === '$controllerProvider') method = 'controller';
-
-        //             newModule[method](def[2][0], def[2][1]);
-        //     }
-        // });
+		//			 newModule[method](def[2][0], def[2][1]);
+		//	 }
+		// });
 
 		// // $scope.$apply();
 		// }});
