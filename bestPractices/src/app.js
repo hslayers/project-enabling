@@ -1,4 +1,3 @@
-'use strict';
 import 'toolbar.module';
 import 'core.module';
 import 'feature-filter.module';
@@ -21,7 +20,7 @@ import 'css/app.css';
 import 'css/whhg-font/css/whhg.css';
 import './app.css';
 
-var module = angular.module('hs', [
+const module = angular.module('hs', [
 	'hs.toolbar',
 	'hs.layermanager',
 	'hs.map',
@@ -32,14 +31,14 @@ var module = angular.module('hs', [
 	'ngMaterial'
 ])
 
-.config(function($mdThemingProvider) {
-	$mdThemingProvider.theme('default')
-		.primaryPalette('brown', {
-			'default': '700',
-			'hue-1': '400'
-		})
-		.accentPalette('brown')
-});
+	.config(function($mdThemingProvider) {
+		$mdThemingProvider.theme('default')
+			.primaryPalette('brown', {
+				'default': '700',
+				'hue-1': '400'
+			})
+			.accentPalette('brown');
+	});
 
 module.directive('hs', function(HsMapService, HsCore) {
 	'ngInject';
@@ -51,12 +50,12 @@ module.directive('hs', function(HsMapService, HsCore) {
 	};
 });
 
-var caturl = '/php/metadata/csw/index.php';
+const caturl = '/php/metadata/csw/index.php';
 
 module.value('HsConfig', {
 	appLogo: './enabling_logo.png',
 	design: 'md',
-	loadCss: false,
+	importCss: false,
 	query: {
 		multi: false
 	},
@@ -68,6 +67,7 @@ module.value('HsConfig', {
 		'md-toolbar': require('toolbar.html'),
 		// infopanel: 'satelliteMetadataQuery.html',
 		help: require('help.html'),
+		policies: require('policies.html'),
 		acknowledgement: require('acknowledgement.html')
 	},
 	default_layers: [
@@ -174,15 +174,59 @@ module.value('HsConfig', {
 	status_manager_url: '/wwwlibs/statusmanager/index.php'
 });
 
-module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService', 'HsQueryVectorService', 'HsCompositionsParserService', 'HsFeatureFilterService', 'HsLayermanagerService',
-	function($scope, $rootScope, HsCore, BaseService, VectorService, composition_parser, HsFeatureFilter, LayMan) {
+module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService', 'HsQueryVectorService', 'HsCompositionsParserService', 'HsFeatureFilterService', 'HsLayermanagerService', '$mdBottomSheet',
+	function($scope, $rootScope, HsCore, BaseService, VectorService, composition_parser, HsFeatureFilter, LayMan, $mdBottomSheet) {
+		function getCookie(name) {
+			const COOKIE = document.cookie
+				.split('; ')
+				.find(cookie => cookie.startsWith(`${name}=`));
+
+			return COOKIE ? COOKIE
+				.split('=')[1]
+				: undefined;
+		}
+
+		if (getCookie('do_not_track') !== 'false') {
+			window['ga-disable-UA-171782968-1'] = true;
+
+			$mdBottomSheet.show({
+				template: require('cookies_consent.html'),
+				scope: $scope,
+				preserveScope: true,
+				parent: angular.element(document).find('body'),
+				isLockedOpen: true
+			});
+		} else {
+			gtag('js', new Date());
+			gtag('config', 'UA-171782968-1');
+		}
+					
+
+		function gtag(){dataLayer.push(arguments);}
+
+		$scope.acceptCookies = function() {
+			document.cookie = 'do_not_track=false';
+			window['ga-disable-UA-171782968-1'] = false;
+					
+			gtag('js', new Date());
+			gtag('config', 'UA-171782968-1');
+
+			$mdBottomSheet.hide();
+		};
+
+		$scope.rejectCookies = function() {
+			document.cookie = 'do_not_track=true';
+
+			$mdBottomSheet.hide();
+		};
+
 		$scope.HsCore = HsCore;
 		$rootScope.$on('layermanager.layer_added', function (e, layer) {
 			if (layer.hsFilters) LayMan.currentLayer = layer;
 			HsFeatureFilter.prepLayerFilter(layer);
 
 			if (layer.layer instanceof Vector) {
-				var source = layer.layer.getSource();
+				const source = layer.layer.getSource();
 				console.log(source.getState());
 				var listenerKey = source.on('change', function (e) {
 					if (source.getState() === 'ready') {
