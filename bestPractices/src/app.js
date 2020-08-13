@@ -187,7 +187,7 @@ module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService
 		}
 
 		if (getCookie('do_not_track') !== 'false') {
-			window['ga-disable-UA-171782968-1'] = true;
+			window[`ga-disable-${GA_ID}`] = true;
 
 			$mdBottomSheet.show({
 				template: require('cookies_consent.html'),
@@ -198,7 +198,7 @@ module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService
 			});
 		} else {
 			gtag('js', new Date());
-			gtag('config', 'UA-171782968-1');
+			gtag('config', GA_ID);
 		}
 					
 
@@ -206,10 +206,10 @@ module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService
 
 		$scope.acceptCookies = function() {
 			document.cookie = 'do_not_track=false';
-			window['ga-disable-UA-171782968-1'] = false;
+			window[`ga-disable-${GA_ID}`] = false;
 					
 			gtag('js', new Date());
-			gtag('config', 'UA-171782968-1');
+			gtag('config', GA_ID);
 
 			$mdBottomSheet.hide();
 		};

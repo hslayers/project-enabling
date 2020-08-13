@@ -34,7 +34,10 @@ module.exports = merge(common, {
       filename: '[name].[hash].bundle.css'
     }),
     // see https://webpack.js.org/guides/caching#module-identifiers
-    new webpack.HashedModuleIdsPlugin()
+    new webpack.HashedModuleIdsPlugin(),
+    new webpack.DefinePlugin({
+      GA_ID: JSON.stringify('UA-171782968-1'),
+    }),
   ],
   optimization: {
     // See https://webpack.js.org/guides/caching

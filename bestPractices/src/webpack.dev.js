@@ -10,6 +10,7 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -27,6 +28,11 @@ module.exports = merge(common, {
     pathinfo: false,
     filename: '[name].bundle.js'
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      GA_ID: JSON.stringify('UA-171782968-2'),
+    }),
+  ],
   module: {
     rules: [
       // Load css files which will be injected in html page at startup <style>...</style>)
