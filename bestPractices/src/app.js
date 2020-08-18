@@ -14,6 +14,8 @@ import { transform } from 'ol/proj';
 import View from 'ol/View';
 import {unByKey} from 'ol/Observable';
 
+import Attribution from 'ol/control/Attribution';
+
 import 'angular-material/angular-material.css';
 import 'ol/ol.css';
 import 'css/app.css';
@@ -60,6 +62,9 @@ module.value('HsConfig', {
 		multi: false
 	},
 	queryPoint: 'hidden',
+	mapControls: [
+		new Attribution(),
+	],
 	directiveTemplates: {
 		'md-sidenav': require('sidenav.html'),
 		layout: require('layoutmd.html'),

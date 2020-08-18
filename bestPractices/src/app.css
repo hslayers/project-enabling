@@ -3,6 +3,10 @@ button.attributions-button md-icon {
     color: rgba(93,64,55,0.75);
 }
 
+.ol-attribution {
+    display: none;
+}
+
 md-content .content-body .content-info * {
     margin-block-start: 0em;
     margin-block-end: 0em;
