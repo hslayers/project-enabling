@@ -69,6 +69,9 @@ module.value('HsConfig', {
 	mapControls: [
 		new Attribution(),
 	],
+	componentsEnabled: {
+		'geolocationButton': false,
+	},
 	directiveTemplates: {
 		'md-sidenav': require('sidenav.html'),
 		layout: require('layoutmd.html'),
@@ -249,34 +252,6 @@ module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService
 			BaseService.activateQueries();
 		});
 
-		// $scope.$on('scope_loaded', (event, args) => {
-		//	 if (args === 'Layout') {
-		// let existing = angular.module('hs.layout');
-		// let newModule = angular.module('hs.layout', existing.requires);
-		// existing['_invokeQueue'].forEach(function (def) {
-		//	 // console.log(def[2][0]);
-		//	 // console.log(def);
-		//	 switch(def[2][0]){
-		//		 case 'hs.mdSidenav.directive':
-		//			 newModule.component('hs.mdSidenav.directive', customSidenav);
-		//			 break;
-		//		 default:
-		//			 // def[1] containes: 'service', 'directive', 'component' etc.
-		//			 // def[2][0] contains name of the directive comonent etc.
-		//			 // def[2][1] is directives dependecies and the last is function as usual
-		//			 let method = def[1];
-
-		//			 if (def[0] === '$controllerProvider') method = 'controller';
-
-		//			 newModule[method](def[2][0], def[2][1]);
-		//	 }
-		// });
-
-		// // $scope.$apply();
-		// }});
-
-		HsCore.setMainPanel('composition_browser');
-		//composition_parser.load('http://www.whatstheplan.eu/wwwlibs/statusmanager2/index.php?request=load&id=972cd7d1-e057-417b-96a7-e6bf85472b1e');
 		$scope.$on('query.dataUpdated', function(event) {
 			if (console) console.log('Attributes', BaseService.data.attributes, 'Groups', BaseService.data.groups);
 		});
