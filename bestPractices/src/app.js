@@ -155,6 +155,7 @@ module.value('HsConfig', {
 		units: 'm',
 		maxZoom: 9,
 		minZoom: 2,
+		constrainResolution: true,
 	}),
 	hostname: {
 		'default': {
