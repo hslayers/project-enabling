@@ -62,6 +62,10 @@ module.value('HsConfig', {
 		multi: false
 	},
 	queryPoint: 'hidden',
+	sidebarToggleable: false,
+	panelWidths: {
+		default: '60%',
+	},
 	mapControls: [
 		new Attribution(),
 	],
