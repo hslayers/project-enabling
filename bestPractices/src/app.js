@@ -77,7 +77,8 @@ module.value('HsConfig', {
 		layout: require('layoutmd.html'),
 		'md-overlay': require('overlay.html'),
 		'md-toolbar': require('toolbar.html'),
-		// infopanel: 'satelliteMetadataQuery.html',
+		'feature-list': require('feature-list-md.html'),
+		'query-info-panel-md': require('infopanel-md.html'),
 		help: require('help.html'),
 		policies: require('policies.html'),
 		acknowledgement: require('acknowledgement.html')
@@ -122,6 +123,11 @@ module.value('HsConfig', {
 				}))
 			}),
 			featureURI: 'bp_uri',
+			ordering: {
+				primary: 'position',
+				secondary: 'bp_id',
+				defaultReverse: ['position', 'bp_id'],
+			},
 			hsFilters: [
 				{
 					title: 'Country',
@@ -235,7 +241,7 @@ module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService
 
 		$scope.HsCore = HsCore;
 		$rootScope.$on('layermanager.layer_added', function (e, layer) {
-			if (layer.hsFilters) LayMan.currentLayer = layer;
+			if (layer.hsFilters || layer.ordering) LayMan.currentLayer = layer;
 			HsFeatureFilter.prepLayerFilter(layer);
 
 			if (layer.layer instanceof Vector) {
@@ -256,5 +262,5 @@ module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService
 		$scope.$on('query.dataUpdated', function(event) {
 			if (console) console.log('Attributes', BaseService.data.attributes, 'Groups', BaseService.data.groups);
 		});
-	}
+	},
 ]);
