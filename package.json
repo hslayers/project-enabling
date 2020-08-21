@@ -20,7 +20,7 @@
     "protractor": "protractor test/protractor-conf.js"
   },
   "dependencies": {
-    "hslayers-ng": "git+https://github.com/hslayers/hslayers-ng.git#b121544d105b06b0427c02fe84eacdbf68079635",
+    "hslayers-ng": "git+https://github.com/hslayers/hslayers-ng.git#9e89bc203d6957456f1af5a725615b10734a959b",
     "mini-css-extract-plugin": "^0.10.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3"
   },
