@@ -36,6 +36,7 @@ module.exports = merge(common, {
     // see https://webpack.js.org/guides/caching#module-identifiers
     new webpack.HashedModuleIdsPlugin(),
     new webpack.DefinePlugin({
+      TESTING_ENDPOINT: JSON.stringify(''),
       GA_ID: JSON.stringify('UA-171782968-1'),
     }),
   ],

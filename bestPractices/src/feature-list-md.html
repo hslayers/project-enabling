@@ -22,7 +22,7 @@
             ng-mouseenter="highlightFeature(feature)"
             ng-mouseleave="unhighlightFeature(feature)"
             ng-class="feature.getProperties().class">
-            <img ng-src="{{ feature.getProperties().img }}" class="md-card-image" alt="Best Practice thumbnail">
+            <img ng-src="{{ endpoint + feature.getProperties().img }}" class="md-card-image" alt="Best Practice thumbnail">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline">{{ feature.getProperties().name }}</span>

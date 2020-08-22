@@ -55,7 +55,7 @@ module.directive('hs', function(HsMapService, HsCore) {
 const caturl = '/php/metadata/csw/index.php';
 
 module.value('HsConfig', {
-	appLogo: './enabling_logo.png',
+	appLogo: require('./img/enabling_logo.png').default,
 	design: 'md',
 	importCss: false,
 	query: {
@@ -101,7 +101,7 @@ module.value('HsConfig', {
 			style: new Style({
 				image: new Icon(({
 					crossOrigin: 'anonymous',
-					src: 'enabling_logo_2_relief12_stin.png',
+					src: require('./img/enabling_logo_2_relief12_stin.png').default,
 					anchor: [0.5, 0.5],
 					scale: 0.5,
 				}))
@@ -109,7 +109,7 @@ module.value('HsConfig', {
 			selectedStyle: new Style({
 				image: new Icon(({
 					crossOrigin: 'anonymous',
-					src: 'enabling_logo_2_relief11_stin.png',
+					src: require('img/enabling_logo_2_relief11_stin.png').default,
 					anchor: [0.5, 0.5],
 					scale: 0.5,
 				}))
@@ -117,7 +117,7 @@ module.value('HsConfig', {
 			highlightedStyle: new Style({
 				image: new Icon(({
 					crossOrigin: 'anonymous',
-					src: 'enabling_logo_2_relief11_stin.png',
+					src: require('img/enabling_logo_2_relief11_stin.png').default,
 					anchor: [0.5, 0.5],
 					scale: 0.5,
 				}))
