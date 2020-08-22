@@ -137,19 +137,18 @@ module.value('HsConfig', {
 					},
 					selected: undefined,
 					values: [],
-					// values: ['CZ', 'DE', 'NL'],
 					gatherValues: true
 				},
-				// {
-				//	 title: 'Practice type',
-				//	 valueField: 'type',
-				//	 type: {
-				//		 type: 'fieldset',
-				//	 },
-				//	 selected: undefined,
-				//	 values: [],
-				//	 gatherValues: true
-				// }
+				{
+					title: "Collected By",
+					valueField: "partner",
+					type: {
+						type: "fieldset",
+					},
+					selected: undefined,
+					values: [],
+					gatherValues: true
+				}
 			]
 		})
 	],
