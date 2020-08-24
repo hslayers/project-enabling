@@ -58,6 +58,13 @@ module.value('HsConfig', {
 	appLogo: './enabling_logo.png',
 	design: 'md',
 	importCss: false,
+	permalinkParameters: {
+	  center: false,
+	  featureURI: true,
+		hs_panel: false,
+		language: false,
+		layers: false
+	},
 	query: {
 		multi: false
 	},
@@ -213,14 +220,14 @@ module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService
 			gtag('js', new Date());
 			gtag('config', GA_ID);
 		}
-					
+
 
 		function gtag(){dataLayer.push(arguments);}
 
 		$scope.acceptCookies = function() {
 			document.cookie = 'do_not_track=false';
 			window[`ga-disable-${GA_ID}`] = false;
-					
+
 			gtag('js', new Date());
 			gtag('config', GA_ID);
 
