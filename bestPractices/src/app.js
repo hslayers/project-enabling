@@ -242,20 +242,6 @@ module.controller('Main', ['$scope', '$rootScope', 'HsCore', 'HsQueryBaseService
 		$scope.HsCore = HsCore;
 		$rootScope.$on('layermanager.layer_added', function (e, layer) {
 			if (layer.hsFilters || layer.ordering) LayMan.currentLayer = layer;
-			HsFeatureFilter.prepLayerFilter(layer);
-
-			if (layer.layer instanceof Vector) {
-				const source = layer.layer.getSource();
-				console.log(source.getState());
-				var listenerKey = source.on('change', function (e) {
-					if (source.getState() === 'ready') {
-						console.log(source.getState());
-						unByKey(listenerKey);
-						HsFeatureFilter.prepLayerFilter(layer);
-						HsFeatureFilter.applyFilters(layer);
-					}
-				});
-			}
 			BaseService.activateQueries();
 		});
 
