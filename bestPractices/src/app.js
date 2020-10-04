@@ -156,6 +156,16 @@ module.value('HsConfig', {
 					selected: undefined,
 					values: [],
 					gatherValues: true
+				},
+				{
+					title: "Tags",
+					valueField: "tags",
+					type: {
+						type: "arrayset",
+					},
+					selected: undefined,
+					values: [],
+					gatherValues: true
 				}
 			]
 		})
