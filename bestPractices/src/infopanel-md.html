@@ -12,7 +12,7 @@
 
 <md-content ng-show="featureDetails">
     <div class="img-float">
-        <img ng-src="{{ endpoint + featureDetails.img }}" alt="Best Practice thumbnail">
+        <hs-gallery ng-if="featureDetails.images.length > 0" images="featureDetails.images"></hs-gallery>
     </div>
     <div class="content-body">
         <div class="main-content">

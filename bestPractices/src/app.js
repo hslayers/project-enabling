@@ -5,6 +5,7 @@ import 'layermanager.module';
 import 'map.module';
 import 'permalink.module';
 import 'query.module';
+import 'gallery.module';
 import 'angular-material';
 import { Vector, Tile } from 'ol/layer';
 import { XYZ, Vector as VectorSource } from 'ol/source';
@@ -27,6 +28,7 @@ const module = angular.module('hs', [
 	'hs.layermanager',
 	'hs.map',
 	'hs.query',
+	'hs.gallery',
 	'hs.permalink',
 	'hs.core',
 	'hs.featureFilter',
