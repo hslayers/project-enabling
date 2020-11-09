@@ -47,11 +47,6 @@ md-content .content-body .content-info * {
     background-color: initial;
 } */
 
-md-content .additional-content {
-    max-width: 50em;
-    margin: 2em auto;
-}
-
 md-content .additional-content .heading {
     background-color: #d6e3bc;
 }
