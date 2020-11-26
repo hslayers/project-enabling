@@ -1,22 +1,27 @@
-<md-toolbar class="md-hue-1" ng-show="featureDetails">
-    <div class="md-toolbar-tools">
-        <h2 class="md-flex">{{ featureDetails.name }}</h2>
-
-        <div flex></div>
-
-        <md-button class="md-icon-button" aria-label="Close" ng-click="deselectFeatures()">
-            <md-icon md-menu-origin class="material-icons">close</md-icon>
-        </md-button>
-    </div>
-</md-toolbar>
+<!-- <md-toolbar ng-show="featureDetails"> -->
+<!--     <div class="md-toolbar-tools"> -->
+<!--         <h2 class="md-flex">{{ featureDetails.name }}</h2> -->
+<!--         <div flex></div> -->
+<!--         <md-button class="md-icon-button" aria-label="Close" ng-click="deselectFeatures()"> -->
+<!--             <md-icon md-menu-origin class="material-icons">close</md-icon> -->
+<!--         </md-button> -->
+<!--     </div> -->
+<!-- </md-toolbar> -->
 
 <md-content ng-show="featureDetails">
-    <div class="img-float">
-        <hs-gallery ng-if="featureDetails.images.length > 0" images="featureDetails.images"></hs-gallery>
-    </div>
     <div class="content-body">
+        <div class="hs-infopanel-header">
+            <h2 class="heading md-flex">{{ featureDetails.name }}</h2>
+            <div flex></div>
+            <md-button class="md-icon-button close" aria-label="Close" ng-click="deselectFeatures()">
+                <md-icon md-menu-origin class="material-icons">close</md-icon>
+            </md-button>
+        </div>
+        <div class="img-float">
+            <hs-gallery ng-if="featureDetails.images.length > 0" images="featureDetails.images"></hs-gallery>
+        </div>
         <div class="main-content">
-            <h2><span ng-if="featureDetails.region">{{ featureDetails.region }}, </span>{{ featureDetails.country }}</h2>
+            <h3><span ng-if="featureDetails.region">{{ featureDetails.region }}, </span>{{ featureDetails.country }}</h3>
             <p class="content-info" ng-repeat="url in featureDetails.website.split(',')" ng-if="featureDetails.website"><a target="_blank" ng-href="{{url}}">{{ url }}</a></p>
 
             <h3 ng-if="featureDetails.biomass_source" class="heading">Biomass source</h3>
@@ -27,11 +32,10 @@
 
             <h3 ng-if="featureDetails.contact" class="heading">Contact</h3>
             <p class="content-info" ng-if="featureDetails.contact" ng-bind-html="featureDetails.contact"></p>
-
-            <h3 ng-if="featureDetails.summary_en" class="heading">Summary</h3>
-            <p class="content-info" ng-if="featureDetails.summary_en" ng-bind-html="featureDetails.summary_en"></p>
         </div>
         <div class="additional-content">
+            <h3 ng-if="featureDetails.summary_en" class="heading">Summary</h3>
+            <p class="content-info" ng-if="featureDetails.summary_en" ng-bind-html="featureDetails.summary_en"></p>
             <h3 ng-if="featureDetails.partner" class="heading">Collected By</h3>
             <p class="content-info" ng-if="featureDetails.partner" ng-bind-html="featureDetails.partner"></p>
             <h3 ng-if="featureDetails.context" class="heading">Background context</h3>
