@@ -106,7 +106,7 @@ module.value('HsConfig', {
 			title: 'Farming Best Practices',
 			source: new VectorSource({
 				format: new GeoJSON(),
-				url: 'https://db.atlasbestpractices.com/project-geo-json/2/',
+				url: 'https://db.atlasbestpractices.com/data/project-geo-json/2/',
 			}),
 			style: new Style({
 				image: new Icon(({
